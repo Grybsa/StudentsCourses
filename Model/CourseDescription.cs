@@ -18,7 +18,7 @@ namespace StudentsCourses.Model
             this.descriptionEN = descriptionEN;
         }
         CourseDescription() { }
-        public int getCourseId() { return courseId};
+        public int getCourseId() { return courseId; }
         public string getDescriptionLT() { return descriptionLT; }
         public string getDescriptionEN() { return descriptionEN; }
     }

@@ -14,7 +14,8 @@ namespace StudentsCourses.Model
         string nationality;
         List<Course> courses = new List<Course>();
 
-        Student(int id, string name, string surname, string nationality) { 
+        public Student(int id, string name, string surname, string nationality)
+        {
             this.id = id;
             this.name = name;
             this.surname = surname;
@@ -26,9 +27,24 @@ namespace StudentsCourses.Model
         public string getSurname() { return surname; }
         public string getNationality() { return nationality; }
 
-        public void setCourse(Course course) { 
-            courses.Add(course); 
-            course.addStudent(this);  // čia internetas patarė taip daryt, pats be šito būčiau palikęs
+        public bool addCourse(Course course)
+        {
+
+            if (courses.Any(x => x.getId() == course.getId()))
+            {
+                return false;
+            }
+            courses.Add(course);
+            course.addStudentInternal(this);
+            return true;
+
+        }
+        public void addCourseInternal(Course course)
+        {
+            if (courses.Any(c => c.getId() == course.getId()))
+                return;
+
+            courses.Add(course);
         }
         public List<Course> getCourses() { return courses; }
     }
